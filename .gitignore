@@ -51,4 +51,5 @@ Temporary Items
 # Custom ignores
 # =========================
 node_modules/
+npm-debug.*
 *.zip
