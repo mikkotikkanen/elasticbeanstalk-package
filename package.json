@@ -1,0 +1,19 @@
+{
+  "name": "elasticbeanstalk-package",
+  "version": "1.0.0",
+  "description": "Script for creating Elastic Beanstalk release packages",
+  "bin": {
+    "elasticbeanstalk-package": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mikko Tikkanen <mikko.tikkanen@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.2",
+    "bestzip": "^1.1.3",
+    "globby": "^6.0.0",
+    "minimist": "^1.2.0"
+  }
+}
