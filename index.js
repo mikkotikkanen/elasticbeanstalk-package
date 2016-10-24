@@ -10,7 +10,7 @@ var fs = require('fs'),
 
 var argv = require('minimist')(process.argv.slice(2));
 
-var pckg = require('./package.json'),
+var pckg = require(process.cwd()+'/package.json'),
     zipFilename = pckg.name+'-v'+pckg.version+'.zip';
 
 
@@ -31,9 +31,9 @@ async.waterfall([
      * If dockerimage was set, update Dockerrun.aws.json file with new version number
      */
     if(!argv.dockerimage) { return done(); }
-    var filedata = fs.readFileSync('./Dockerrun.aws.json').toString();
-    filedata = filedata.replace(new RegExp('('+argv.dockerimage+':)(\\d+.\\d+.\\d+)(")', 'i'), '$1'+pckg.version+'$3'); // Search for imagename and semver version (x.x.x)
-    fs.writeFile('./Dockerrun.aws.json', filedata, done);
+    var filedata = fs.readFileSync(process.cwd()+'/Dockerrun.aws.json').toString();
+    filedata = filedata.replace(new RegExp('('+argv.dockerimage+':)(\\d+.\\d+.\\d+[-\\d]*)(")', 'i'), '$1'+pckg.version+'$3'); // Search for imagename and semver version (x.x.x)
+    fs.writeFile(process.cwd()+'/Dockerrun.aws.json', filedata, done);
   },
   function(done) {
     /**
@@ -69,12 +69,12 @@ async.waterfall([
 
 ], function(err) {
   if(err) {
-    console.error(err.message);
+    console.error('ERROR: ', err.message);
     if(argv['show-error-stack']) {
       console.error(err.stack); // Show error stack
     }
     process.exit(1);
   }
 
-  console.log('Elastic Beanstalk release file created. (%s)', zipFilename);
+  console.log('Elastic Beanstalk release package succesfully created. (%s)', zipFilename);
 });
