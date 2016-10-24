@@ -1,6 +1,6 @@
 {
   "name": "elasticbeanstalk-package",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Script for creating Elastic Beanstalk release packages",
   "author": "Mikko Tikkanen <mikko.tikkanen@gmail.com>",
   "repository": "https://github.com/mikkotikkanen/elasticbeanstalk-package",
